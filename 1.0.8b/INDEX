@@ -1,9 +1,0 @@
-GMS_VARTYPE             Constants used in 'gdxrrw'
-gams                    Run a GAMS model from R
-gdxInfo                 Display or Return Information from a GDX File
-gdxrrw-package          Exchanging data between GAMS and R
-igdx                    Initialize the External GDX Libraries
-rgdx                    Read data from GDX into R
-trnsport                Sample datasets
-wgdx                    Write R data to GDX
-wgdx.reshape            Reshape R data to prepare it for writing to GDX
