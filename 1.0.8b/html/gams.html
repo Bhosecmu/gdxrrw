@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Run a GAMS model from R</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for gams {gdxrrw}"><tr><td>gams {gdxrrw}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Run a GAMS model from R</h2>
+
+<h3>Description</h3>
+
+<p>Run a GAMS model from R.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  gams(gmsAndArgs)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>gmsAndArgs</code></td>
+<td>
+<p>Name of <code>.gms</code> file to run, with possible args</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Return from executing <code>gams gmsAndArgs</code></p>
+
+
+<h3>Note</h3>
+
+<p>A common problem is failure to find the GAMS system directory.  Use
+<code><a href="igdx.html">igdx</a></code> to troubleshoot and solve this problem.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Original coding by Rishabh Jain.  Adopted and packaged by
+Steve Dirkse.  Maintainer: <a href="mailto:R@gams.com">R@gams.com</a></p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="igdx.html">igdx</a></code>, <code><a href="rgdx.html">rgdx</a></code>, <code><a href="wgdx.html">wgdx</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+  ## Not run: 
+    gams("trnsport.gms")
+    gams("myModel.gms lp=BDMLP --JOB_ID=case00")
+  
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gdxrrw</em> version 1.0.6 <a href="00Index.html">Index</a>]</div>
+</body></html>

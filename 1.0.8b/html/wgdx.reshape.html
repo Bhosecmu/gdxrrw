@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Reshape R data to prepare it for writing to GDX</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for wgdx.reshape {gdxrrw}"><tr><td>wgdx.reshape {gdxrrw}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Reshape R data to prepare it for writing to GDX</h2>
+
+<h3>Description</h3>
+
+<p>Reshape the input data frame (assumed to be in &quot;wide&quot; form) into a &quot;long&quot; form
+suitable for passing to <code>wgdx.lst</code> or <code>wgdx.df</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  wgdx.reshape(inDF, symDim, symName=NULL, tName="time",
+               gdxName=NULL, setsToo=TRUE, order=NULL,
+               setNames=NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>inDF</code></td>
+<td>
+<p>data frame in &quot;wide&quot; form</p>
+</td></tr>
+<tr valign="top"><td><code>symDim</code></td>
+<td>
+<p>dimension of the output GDX symbol</p>
+</td></tr>
+<tr valign="top"><td><code>symName</code></td>
+<td>
+<p>name of the output GDX symbol</p>
+</td></tr>
+<tr valign="top"><td><code>tName</code></td>
+<td>
+<p>index set name for the new index position created by reshaping</p>
+</td></tr>
+<tr valign="top"><td><code>gdxName</code></td>
+<td>
+<p>name of the GDX file to write</p>
+</td></tr>
+<tr valign="top"><td><code>setsToo</code></td>
+<td>
+<p>if TRUE, extract the index sets defined by <code>inDF</code></p>
+</td></tr>
+<tr valign="top"><td><code>order</code></td>
+<td>
+<p>specify the selection and ordering of the index columns
+when reshaping</p>
+</td></tr>
+<tr valign="top"><td><code>setNames</code></td>
+<td>
+<p>specify explanatory text for the extracted index sets</p>
+</td></tr>
+</table>
+
+
+<h3>Note</h3>
+
+<p>A common problem is failure to load the external GDX libraries that
+are required to interface with GDX data.  Use <code><a href="igdx.html">igdx</a></code> to
+troubleshoot and solve this problem.
+</p>
+<p>There is also the issue of our dependence on the <code>reshape</code>
+package.  This still needs to be tightened up.
+</p>
+<p>This routine is experimental/prototype work
+and perhaps temporary.  Don't use it for production work.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Original coding by Steve Dirkse.  Maintainer: <a href="mailto:R@gams.com">R@gams.com</a></p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="wgdx.html">wgdx</a></code>, <code><a href="igdx.html">igdx</a></code>, <code><a href="rgdx.html">rgdx</a></code>, <code><a href="gdxInfo.html">gdxInfo</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+  # take a sample dataset and reshape it
+  str(airquality);
+  oList &lt;- wgdx.reshape (airquality, 3, symName="airquality",
+                         tName = "dataType", order=c(5,6,0))
+  ## Not run: 
+    # send the data to GDX
+    wgdx.lst("airquality", oList)
+  
+## End(Not run)
+
+  ## Not run: 
+    # complete tests and examples can be run in the
+    # extdata directory of the gdxrrw package
+    # check .libPaths for a hint on where packages are installed
+    setwd(paste(.libPaths()[1],"/gdxrrw/extdata",sep=""))
+    source("tAll.R")
+  
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gdxrrw</em> version 1.0.6 <a href="00Index.html">Index</a>]</div>
+</body></html>

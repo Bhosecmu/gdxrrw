@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Initialize the External GDX Libraries</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for igdx {gdxrrw}"><tr><td>igdx {gdxrrw}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Initialize the External GDX Libraries</h2>
+
+<h3>Description</h3>
+
+<p>Initialize (i.e. load) the external GDX libraries that are required
+to interface with GDX data, and report on the status of the
+initialization.  
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>igdx(gamsSysDir=NULL, silent=FALSE, returnStr=FALSE)</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>gamsSysDir</code></td>
+<td>
+<p>a directory containing the external GDX libraries,
+typically the GAMS system directory.  If this argument is omitted,
+no loading is done but we still report on the initialization
+status.</p>
+</td></tr>
+<tr valign="top"><td><code>silent</code></td>
+<td>
+<p>controls logging of results</p>
+</td></tr>
+<tr valign="top"><td><code>returnStr</code></td>
+<td>
+<p>controls what to return.  If FALSE, return TRUE if
+the external GDX libraries are loaded, FALSE o/w.  If TRUE, return
+the path to the external GDX libraries if loaded, an empty string
+otherwise.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>To query but not modify the current GDX library binding, leave the
+<code>gamsSysDir</code> argument NULL.  To clear, reload, and then query the
+GDX library binding, pass a string argument to <code>gamsSysDir</code>.
+</p>
+<p>If <code>gamsSysDir</code> is a non-empty string containing a valid
+directory, it will be tried first.  If the GDX libraries cannot be
+loaded from this location, the next load attempt will make use of the
+environment variable <code>R_GAMS_SYSDIR</code>, provided it is set to a
+non-empty string.  If we are still not successful, as a last resort we
+try to load the GDX libraries using the system-specific library search
+mechanism (e.g. the PATH on Windows or LD_LIBRARY_PATH on Linux).
+</p>
+
+
+<h3>Value</h3>
+
+<p>By default (when <code>returnStr</code> is FALSE), the return value is TRUE
+if the external GDX libraries are loaded, FALSE o/w.  If
+<code>returnStr</code> is TRUE, the return value is the path to the directory
+containing the external GDX libraries if these libraries were
+successfully loaded, an empty string otherwise.
+</p>
+
+
+<h3>Note</h3>
+
+<p>The directory containing the external GDX libraries is also where we
+look for the gams executable, so calling <code>igdx</code> prior to
+calling <code><a href="gams.html">gams</a></code> ensures that the gams executable can be
+located.  Consider saving a .First function like the following to your
+R workspace:
+<code>.First &lt;- function() { library(gdxrrw) ; igdx("/your/GAMS/sysdir")}</code>
+or set the environment variable <code>R_GAMS_SYSDIR</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Steve Dirkse.  Maintainer: <a href="mailto:R@gams.com">R@gams.com</a></p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="rgdx.html">rgdx</a></code>, <code><a href="wgdx.html">wgdx</a></code>, <code><a href="gams.html">gams</a></code>,
+<code><a href="gdxInfo.html">gdxInfo</a></code> 
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+  ## Not run: 
+    igdx("C:\Program Files\gams23.6");
+    igdx("/usr/gams/23.6.3");
+  
+## End(Not run)
+  igdx();
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gdxrrw</em> version 1.0.6 <a href="00Index.html">Index</a>]</div>
+</body></html>
